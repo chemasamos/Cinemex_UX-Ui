@@ -1,0 +1,24 @@
+.section {
+    padding: var(--spacing-lg) 0;
+    background-color: var(--dark-bg);
+}
+
+.heading {
+    border-left: 4px solid var(--white);
+    padding-left: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    color: var(--white);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+}
+
+/* Desktop */
+@media (min-width: 769px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

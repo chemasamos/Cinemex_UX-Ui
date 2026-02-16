@@ -1,0 +1,10 @@
+/* Reseteamos o importamos nuestros estilos globales */
+@import './styles/global.css';
+
+/* Estilos específicos de index si fueran necesarios, pero global maneja todo */
+body {
+  margin: 0;
+  padding: 0;
+  /* background-color: var(--dark-bg); Ya está en global, pero por seguridad */
+  min-height: 100vh;
+}

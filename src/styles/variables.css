@@ -1,0 +1,30 @@
+/* Paleta de colores CINEMEX */
+:root {
+  --primary-red: #E30613;
+  --secondary-black: #000000;
+  --dark-bg: #1A1A1A;
+  --white: #FFFFFF;
+  --gray-text: #CCCCCC;
+  --accent-gold: #FFD700;
+
+  /* Espaciado base */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+
+  /* Bordes */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+
+  /* Sombras */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+
+  /* Transiciones */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+}
