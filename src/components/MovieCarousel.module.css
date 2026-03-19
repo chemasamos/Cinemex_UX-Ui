@@ -1,0 +1,30 @@
+/* Contenedor con padding lateral para que las flechas no se corten */
+.wrapper {
+    position: relative;
+    padding: 0 3rem;
+}
+
+/* Flechas de navegación — override de los estilos de Swiper */
+.wrapper :global(.swiper-button-prev),
+.wrapper :global(.swiper-button-next) {
+    color: #fff;
+    background-color: var(--primary-red, #e50914);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    top: 45%;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.wrapper :global(.swiper-button-prev):hover,
+.wrapper :global(.swiper-button-next):hover {
+    background-color: #b00710;
+    transform: scale(1.08);
+}
+
+/* Ajusta el tamaño del ícono interno de la flecha */
+.wrapper :global(.swiper-button-prev)::after,
+.wrapper :global(.swiper-button-next)::after {
+    font-size: 0.9rem;
+    font-weight: 900;
+}

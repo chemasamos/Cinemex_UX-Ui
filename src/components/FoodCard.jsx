@@ -1,7 +1,14 @@
 import React from 'react';
 import styles from './FoodCard.module.css';
 
-const FoodCard = ({ name, imageUrl, category, price }) => {
+/**
+ * Componente FoodCard — Tarjeta de alimento
+ *
+ * Props:
+ * - name, imageUrl, category, price: datos del producto
+ * - onAdd: función llamada con onClick cuando el usuario agrega el item al carrito
+ */
+const FoodCard = ({ name, imageUrl, category, price, onAdd }) => {
     return (
         <div className={styles.card}>
             <div className={styles.imageContainer}>
@@ -12,7 +19,8 @@ const FoodCard = ({ name, imageUrl, category, price }) => {
                 <h3 className={styles.name}>{name}</h3>
                 <div className={styles.footer}>
                     <span className={styles.price}>${price}.00</span>
-                    <button className={styles.addButton}>Agregar</button>
+                    {/* onClick dispara onAdd, que actualiza el estado carrito en el padre */}
+                    <button className={styles.addButton} onClick={onAdd}>Agregar</button>
                 </div>
             </div>
         </div>
@@ -20,3 +28,4 @@ const FoodCard = ({ name, imageUrl, category, price }) => {
 };
 
 export default FoodCard;
+

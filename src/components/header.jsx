@@ -1,48 +1,57 @@
-function Header({ cambiarVista }) {
+import { Link, NavLink } from 'react-router-dom';
+
+/**
+ * Componente Header — Barra de navegación reutilizable
+ *
+ * Props: ninguna (usa NavLink de react-router-dom internamente)
+ * Reutilizado en: App.jsx como layout principal
+ */
+function Header() {
+  const linkStyle = ({ isActive }) => ({
+    fontWeight: 'bold',
+    color: isActive ? 'var(--primary-red)' : 'var(--white)',
+    textDecoration: 'none',
+  });
+
   return (
     <header
       style={{
-        width: "100%", // ocupa TODO el ancho de la pantalla
-        boxSizing: "border-box",
-        backgroundColor: "#c9f5ea"
+        backgroundColor: 'var(--secondary-black)',
+        padding: '1rem 0',
+        position: 'sticky',
+        top: 0,
+        zIndex: 100,
+        borderBottom: '2px solid var(--primary-red)',
       }}
     >
-      {/* Contenedor interno para ordenar contenido */}
       <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          padding: "16px 24px",
-          maxWidth: "1400px",
-          margin: "0 auto"
-        }}
+        className="container"
+        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
       >
-        <h1 style={{ margin: 0 }}>CinePrueba</h1>
+        {/* Logo — reutilizable como enlace a inicio */}
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <h1 style={{ fontSize: '1.5rem', margin: 0, border: 'none', color: '#fff' }}>
+            CINE<span style={{ color: 'var(--primary-red)' }}>MEX</span>
+          </h1>
+        </Link>
 
-        <nav
-          style={{
-            display: "flex",
-            gap: "24px"
-          }}
-        >
-          <span
-            style={{ cursor: "pointer" }}
-            onClick={() => cambiarVista("home")}
-          >
-            Inicio
-          </span>
-
-          <span
-            style={{ cursor: "pointer" }}
-            onClick={() => cambiarVista("cartelera")}
-          >
-            Cartelera
-          </span>
+        {/* Navegación principal con NavLink activo */}
+        <nav>
+          <ul style={{ display: 'flex', listStyle: 'none', gap: '20px', margin: 0, padding: 0 }}>
+            <li>
+              <NavLink to="/cartelera" style={linkStyle}>Cartelera</NavLink>
+            </li>
+            <li>
+              <NavLink to="/alimentos" style={linkStyle}>Alimentos</NavLink>
+            </li>
+            <li>
+              <NavLink to="/otros" style={linkStyle}>Promociones</NavLink>
+            </li>
+          </ul>
         </nav>
       </div>
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;

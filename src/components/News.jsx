@@ -1,24 +1,24 @@
 import { useEffect, useState } from "react";
-// Importamos el archivo JSON local con las noticias del cine
-import newsData from "../data/news.json";
 
 /**
  * Componente News
- * Usa useEffect para simular la carga de noticias desde una fuente de datos local (JSON).
+ * Usa useEffect + fetch() para cargar noticias desde un archivo JSON local (public/news.json).
  * La lista de noticias se guarda en estado con useState y se renderiza dinámicamente.
  */
 function News() {
-    // Estado que almacenará la lista de noticias
+    // Estado que almacenará la lista de noticias cargadas via fetch
     const [news, setNews] = useState([]);
 
     /**
      * useEffect se ejecuta una sola vez al montar el componente (array vacío de dependencias).
-     * Simula la carga de datos externos (como una llamada a API) cargando el JSON local.
+     * Hace un fetch() a public/news.json simulando el consumo de datos de una API externa.
      */
     useEffect(() => {
-        // Cargamos los datos del JSON al estado
-        setNews(newsData);
-    }, []); // El array vacío [] garantiza que solo se ejecuta al montar
+        // fetch() al JSON local en la carpeta public (accesible desde la raíz del servidor)
+        fetch('/news.json')
+            .then((response) => response.json())
+            .then((data) => setNews(data));
+    }, []); // [] = solo se ejecuta al montar el componente
 
     return (
         <div style={styles.container}>
@@ -69,3 +69,4 @@ const styles = {
 };
 
 export default News;
+
