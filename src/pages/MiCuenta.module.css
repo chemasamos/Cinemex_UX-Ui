@@ -1,0 +1,275 @@
+/* MiCuenta.module.css
+   ─────────────────────────────────────────────────────────
+   CSS Modules genera nombres de clase únicos por componente,
+   evitando colisiones de estilos entre diferentes componentes.
+   Solo este componente puede usar estas clases.
+   ─────────────────────────────────────────────────────────
+*/
+
+/* ── Contenedor principal de la página ── */
+.page {
+  padding: var(--spacing-lg) 0 var(--spacing-xl);
+  min-height: calc(100vh - 140px); /* Resta header + footer */
+}
+
+/* ── Título principal H1 ── */
+.pageTitle {
+  color: var(--white);
+  font-size: 2rem;
+  text-transform: uppercase;
+  border-bottom: 3px solid var(--primary-red);
+  display: inline-block;
+  padding-bottom: var(--spacing-xs);
+  margin-bottom: var(--spacing-lg);
+}
+
+/* ── Banner de éxito tras guardar ── */
+.successBanner {
+  background-color: #0d2b1a;
+  border: 2px solid #2ecc71;
+  border-radius: var(--border-radius-md);
+  color: #2ecc71;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 1rem 1.5rem;
+  margin-bottom: var(--spacing-md);
+  text-align: center;
+  /* Animación de entrada sutil */
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Sección con tarjeta contenedora ── */
+.section {
+  background-color: #1a1a2e;
+  border: 1px solid #333;
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+/* ── Título de cada sección ── */
+.sectionTitle {
+  font-size: 1.2rem;
+  color: var(--white);
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid #333;
+  padding-bottom: var(--spacing-sm);
+}
+
+.icon {
+  font-size: 1.3rem;
+}
+
+/* ────────────────────────────────────────────
+   FORMULARIO
+   ──────────────────────────────────────────── */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+/* Fila de dos columnas (en pantallas medianas+) */
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+}
+
+/* En móvil, las columnas pasan a ser una sola fila */
+@media (max-width: 600px) {
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Grupo label + input */
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* Etiqueta del campo */
+.label {
+  color: var(--gray-text);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Campo de texto / email / tel / date */
+.input {
+  background-color: #16213e;
+  border: 1px solid #444;
+  border-radius: var(--border-radius-md);
+  color: var(--white);
+  font-size: 1rem;
+  padding: 0.65rem 0.9rem;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.input:focus {
+  border-color: var(--primary-red);
+}
+
+/* Botón guardar */
+.saveButton {
+  align-self: flex-start;
+  background-color: var(--primary-red);
+  border: none;
+  border-radius: var(--border-radius-md);
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.75rem 2rem;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.saveButton:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.saveButton:active {
+  transform: translateY(0);
+}
+
+/* ────────────────────────────────────────────
+   BOLETOS COMPRADOS
+   ──────────────────────────────────────────── */
+
+.ticketList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+/* Tarjeta de cada compra */
+.ticketCard {
+  background-color: #16213e;
+  border-left: 4px solid var(--primary-red);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  transition: background-color var(--transition-fast);
+}
+
+.ticketCard:hover {
+  background-color: #1c2a50;
+}
+
+/* Título de la película */
+.ticketMovie {
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+}
+
+/* Detalles de la compra (fecha, boletos, método) */
+.ticketDetails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  color: var(--gray-text);
+  font-size: 0.875rem;
+}
+
+/* Total destacado en rojo */
+.ticketTotal {
+  color: var(--primary-red);
+  font-weight: bold;
+  margin-left: auto;
+}
+
+/* ────────────────────────────────────────────
+   MÉTODOS DE PAGO
+   ──────────────────────────────────────────── */
+
+/* Tarjeta visual decorativa */
+.paymentCard {
+  background: linear-gradient(135deg, #1a1a3e 0%, #16213e 60%, #0f3460 100%);
+  border: 1px solid #444;
+  border-radius: 16px;
+  padding: var(--spacing-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+  max-width: 380px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.paymentInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.paymentType {
+  color: var(--gray-text);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+.paymentNumber {
+  color: var(--white);
+  font-size: 1.15rem;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.12em;
+  margin: 0;
+}
+
+.paymentExpiry {
+  color: var(--gray-text);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* Chip decorativo (no funcional, solo visual) */
+.chipDecoration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chip {
+  width: 44px;
+  height: 34px;
+  background: linear-gradient(145deg, #c8a951, #f0d060, #c8a951);
+  border-radius: 6px;
+  border: 1px solid #a08030;
+}
+
+/* Botón agregar tarjeta */
+.addCardButton {
+  background-color: transparent;
+  border: 1px dashed #555;
+  border-radius: var(--border-radius-md);
+  color: var(--gray-text);
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0.6rem 1.2rem;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.addCardButton:hover {
+  border-color: var(--primary-red);
+  color: var(--white);
+}

@@ -2,18 +2,42 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { movies } from '../data/movies';
 
 /**
- * Página Detalle — Muestra los datos reales de una película
+ * Página Detalle — Vista completa de una película individual
+ *
+ * CONCEPTOS DE REACT ROUTER DOM:
+ * ─────────────────────────────────────────────────────────────────────────────
+ *
+ * useParams():
+ *   Hook de React Router que lee los parámetros dinámicos de la URL actual.
+ *   Una ruta dinámica se define con el prefijo ":" en App.jsx:
+ *     <Route path="/pelicula/:id" element={<Detalle />} />
+ *   El segmento ":id" puede ser cualquier valor en la URL. Ejemplos:
+ *     URL /pelicula/1  → useParams() devuelve { id: "1" }
+ *     URL /pelicula/7  → useParams() devuelve { id: "7" }
+ *   IMPORTANTE: el valor siempre es un STRING. Por eso se debe convertir
+ *   a número con Number(id) antes de comparar con los ids numéricos del array.
+ *
+ * ¿Cómo funciona la ruta dinámica /pelicula/:id?
+ *   1. El usuario hace click en una <MovieCard> en Inicio.jsx o Cartelera.jsx
+ *   2. useNavigate() lleva al usuario a /pelicula/3 (por ejemplo)
+ *   3. React Router detecta que /pelicula/3 coincide con el patrón /pelicula/:id
+ *   4. Renderiza este componente Detalle.jsx
+ *   5. Detalle usa useParams() para extraer el "3" de la URL
+ *
+ * .find() sobre el array de películas:
+ *   Array.find() recorre el array y retorna el PRIMER elemento que satisface
+ *   la condición de callback. Si ninguno coincide, retorna undefined.
+ *   Aquí buscamos la película cuyo id numérico coincide con el id de la URL.
+ *
+ * Renderizado condicional — película no encontrada:
+ *   Si .find() retorna undefined (id inválido o que no existe), mostramos
+ *   un mensaje de error con un botón para volver. Este es un patrón de
+ *   "guard clause" en React: retornar temprano si los datos no son válidos.
+ * ─────────────────────────────────────────────────────────────────────────────
  *
  * Hooks usados:
  * - useParams: lee el parámetro :id de la URL (/pelicula/:id)
- * - useNavigate: para el botón "Volver"
- *
- * Flujo:
- * 1. useParams() extrae el id de la URL como string ("1", "2", etc.)
- * 2. Se convierte a número con Number() para comparar con movie.id
- * 3. Se busca la película en movies[] con .find()
- * 4. Si no existe, se muestra un mensaje de error
- * 5. Si existe, se muestran todos sus datos reales
+ * - useNavigate: para el botón "← Volver" y el botón "Comprar boletos"
  */
 function Detalle() {
   // useParams devuelve un objeto con los parámetros dinámicos de la ruta
